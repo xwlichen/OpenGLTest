@@ -79,7 +79,7 @@ public class Line extends BaseShape {
 
         setIdentityM(modelMatrix, 0);
         setIdentityM(viewMatrix, 0);
-        Matrix.translateM(modelMatrix, 0, 0.5f, 0, 0);
+        Matrix.translateM(modelMatrix, 0, 0.0f, 0, 0);
 
         Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 10f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
     }
@@ -121,6 +121,7 @@ public class Line extends BaseShape {
 
         glUniformMatrix4fv(uViewMatrixLocation, 1, false, viewMatrix, 0);
 
+        //形状   从数组缓存中的哪一位开始绘制  顶点数量
         glDrawArrays(GL_LINES, 0, 2);
     }
 }

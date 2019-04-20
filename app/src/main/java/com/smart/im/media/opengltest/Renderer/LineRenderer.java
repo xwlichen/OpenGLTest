@@ -22,13 +22,13 @@ public class LineRenderer extends BaseRenderer {
 
     public LineRenderer(Context context) {
         this.context = context;
-        GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         line=new Line(context);
+        GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
         line.onSurfaceCreated(gl,config);
 
     }
