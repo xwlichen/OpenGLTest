@@ -45,7 +45,7 @@ public class ShaderHelper {
         final int shaderId = GLES20.glCreateShader(type);
         if (shaderId == 0) {
             // 若创建失败则返回
-            LogUtils.d("could not create new shader");
+            LogUtils.e("could not create new shader");
             return 0;
         }
         //加载shader的源代码
@@ -58,7 +58,7 @@ public class ShaderHelper {
         GLES20.glGetShaderiv(shaderId, GLES20.GL_COMPILE_STATUS, compileStatsu, 0);
         if ((compileStatsu[0] == 0)) {
             GLES20.glDeleteShader(shaderId);
-            LogUtils.d("Compilation of shader failed");
+            LogUtils.e("Compilation of shader failed");
             return 0;
         }
         return shaderId;
@@ -74,7 +74,7 @@ public class ShaderHelper {
         //创建程序
         final int programId = GLES20.glCreateProgram();
         if (programId == 0) {
-            LogUtils.d("Could not create new program");
+            LogUtils.e("Could not create new program");
             return 0;
         }
         //向程序加入顶点着色器
@@ -92,7 +92,7 @@ public class ShaderHelper {
 
         if (linkStatus[0] == 0) {
             GLES20.glDeleteProgram(programId);
-            LogUtils.d("Linking of program failed");
+            LogUtils.e("Linking of program failed");
             return 0;
         }
         return programId;

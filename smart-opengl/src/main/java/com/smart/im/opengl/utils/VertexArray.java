@@ -1,5 +1,7 @@
 package com.smart.im.opengl.utils;
 
+import android.opengl.GLES20;
+
 import com.smart.im.opengl.Constants;
 
 import java.nio.ByteBuffer;
@@ -42,8 +44,8 @@ public class VertexArray {
     public void setVertexAttribPointer(int dataOffset, int attributeLocation, int componentCount, int stride) {
         floatBuffer.position(dataOffset);
 
-        glVertexAttribPointer(attributeLocation, componentCount, GL_FLOAT, false, stride, floatBuffer);
-        glEnableVertexAttribArray(attributeLocation);
+        GLES20.glVertexAttribPointer(attributeLocation, componentCount, GL_FLOAT, false, stride, floatBuffer);
+        GLES20.glEnableVertexAttribArray(attributeLocation);
 
         floatBuffer.position(0);
     }

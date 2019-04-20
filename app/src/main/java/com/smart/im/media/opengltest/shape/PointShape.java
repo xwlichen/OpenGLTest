@@ -8,7 +8,10 @@ import com.smart.im.opengl.base.BaseShape;
 import com.smart.im.opengl.utils.ShaderHelper;
 import com.smart.im.opengl.utils.VertexArray;
 
+import static android.opengl.GLES20.GL_LINES;
 import static android.opengl.GLES20.GL_POINTS;
+import static android.opengl.GLES20.glDrawArrays;
+import static android.opengl.GLES20.glUniform4f;
 
 /**
  * @date : 2019/4/18 下午3:35
@@ -25,7 +28,14 @@ public class PointShape extends BaseShape {
     private int aPositionLocation;
 
     float[] pointVertex = {
-            0f, 0f
+            0f, 0f,
+            0.01f, 0.01f,
+            -0.1f, -0.1f,
+            0.02f, 0.02f,
+            0.03f, 0.03f,
+            0.04f, 0.04f,
+            0.05f, 0.05f,
+            0.06f, 0.06f,
     };
 
     public PointShape(Context context) {
@@ -53,7 +63,7 @@ public class PointShape extends BaseShape {
     public void draw() {
         // 给绑定的值赋值
         GLES20.glUniform4f(aColorLocation, 0.0f, 0.0f, 1.0f, 1.0f);
-        GLES20.glDrawArrays(GL_POINTS, 0, 1);
+        GLES20.glDrawArrays(GL_LINES, 0, pointVertex.length / POSITION_COMPONENT_COUNT);
     }
 
 }
