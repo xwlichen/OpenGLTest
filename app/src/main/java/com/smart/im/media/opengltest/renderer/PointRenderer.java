@@ -1,7 +1,6 @@
-package com.smart.im.media.opengltest.Renderer;
+package com.smart.im.media.opengltest.renderer;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.opengl.GLES20;
 
 import com.blankj.utilcode.util.LogUtils;

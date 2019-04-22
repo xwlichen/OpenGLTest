@@ -9,4 +9,6 @@ import android.opengl.GLSurfaceView;
  * @description :
  */
 public abstract class BaseRenderer implements GLSurfaceView.Renderer {
+
+
 }
