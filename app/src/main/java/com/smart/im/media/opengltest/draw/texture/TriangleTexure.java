@@ -16,18 +16,13 @@ import java.nio.IntBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import static android.opengl.GLES20.GL_LINES;
 import static android.opengl.GLES20.GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS;
 import static android.opengl.GLES20.GL_TEXTURE0;
 import static android.opengl.GLES20.GL_TEXTURE_2D;
 import static android.opengl.GLES20.GL_TRIANGLES;
-import static android.opengl.GLES20.glDrawArrays;
 import static android.opengl.GLES20.glGetAttribLocation;
 import static android.opengl.GLES20.glGetUniformLocation;
-import static android.opengl.GLES20.glUniform4f;
 import static android.opengl.GLES20.glUniformMatrix4fv;
-import static android.opengl.GLES20.glUseProgram;
-import static android.opengl.Matrix.setIdentityM;
 
 /**
  * Created by glumes on 2017/7/30.
@@ -36,9 +31,15 @@ import static android.opengl.Matrix.setIdentityM;
 public class TriangleTexure extends BaseShape {
 
 
+    //    private float[] vertexArrayData = {
+//
+//            0.5f, 0f,
+//            0f, 1.0f,
+//            1.0f, 1.0f
+//    };
     private float[] vertexArrayData = {
 
-            0.5f, 0f,
+            1.0f, -2f,
             0f, 1.0f,
             1.0f, 1.0f
     };
@@ -48,6 +49,12 @@ public class TriangleTexure extends BaseShape {
             0f, 1.0f,
             1.0f, 1.0f
     };
+
+//    private float[] textureArrayData = {
+//            1.0f, 1.0f,
+//            0f, 1.0f,
+//            0.5f, 0f
+//    };
 
 
     private static final String U_VIEW_MATRIX = "u_ViewMatrix";
@@ -109,9 +116,11 @@ public class TriangleTexure extends BaseShape {
 
 //        LogUtils.e("max combined texture image units " + intBuffer[0].)
 
+        // 设置初始的单位矩阵
         Matrix.setIdentityM(modelMatrix, 0);
 
 //        Matrix.rotateM(modelMatrix,0,180f,1f,0f,0f)
+        //沿x、y、z 方向平移多少个单位
         Matrix.translateM(modelMatrix, 0, 0f, 0.5f, 0f);
 
         Matrix.setIdentityM(viewMatrix, 0);
@@ -127,7 +136,6 @@ public class TriangleTexure extends BaseShape {
 
 
         GLES20.glViewport(0, 0, width, height);
-
         float aspectRatio = width > height ? (float) width / (float) height : (float) height / (float) width;
 
         if (width > height) {

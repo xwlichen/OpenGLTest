@@ -25,6 +25,9 @@ import static android.opengl.GLUtils.texImage2D;
  */
 public class TextureHelper {
 
+    public static int CUBE = 0x01;
+    public static int ANIMAL = 0x02;
+
     /**
      * 返回加载图像后的 OpenGl 纹理的 ID
      *
@@ -76,5 +79,41 @@ public class TextureHelper {
         glBindTexture(GL_TEXTURE_2D, 0);
 
         return textureObjectIds[0];
+    }
+
+
+    /**
+     * 立方体纹理 生成多个纹理贴图
+     *
+     * @param context
+     * @return
+     */
+    public static int[] loadCubeTexture(Context context, int type, int[] imageFileIDs) {
+
+        final int[] cubeTextureIds = new int[7];
+        Bitmap bitmap;
+        glGenTextures(6, cubeTextureIds, 0);
+
+        int[] images = imageFileIDs;
+
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inScaled = false;
+        for (int i = 0; i < 7; i++) {
+            bitmap = BitmapFactory.decodeResource(context.getResources(), images[i], options);
+
+            glBindTexture(GL_TEXTURE_2D, cubeTextureIds[i]);
+            // 设置缩小的情况下过滤方式
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            // 设置放大的情况下过滤方式
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            texImage2D(GL_TEXTURE_2D, 0, bitmap, 0);
+
+            bitmap.recycle();
+
+            glGenerateMipmap(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, 0);
+        }
+
+        return cubeTextureIds;
     }
 }
