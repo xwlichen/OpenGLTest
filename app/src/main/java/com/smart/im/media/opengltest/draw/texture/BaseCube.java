@@ -53,7 +53,7 @@ public class BaseCube extends BaseShape {
             .order(ByteOrder.nativeOrder())
             .asFloatBuffer();
 
-    float CubeSize = 1.0f;
+    float CubeSize = 0.5f;
 
     float HalfCubeSize = CubeSize / 2;
 
